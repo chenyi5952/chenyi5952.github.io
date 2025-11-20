@@ -3,95 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>我的首页</title>
+  <title>数字时钟</title>
   <style>
     :root {
-      --bg: #f5f7fa;
-      --text: #333;
-      --primary: #2563eb;
-      --radius: 8px;
-      --shadow: 0 2px 8px rgba(0,0,0,0.1);
+      --bg: #1e1e2f;
+      --text: #ffffff;
+      --primary: #00b4d8;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
       margin: 0;
-      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-    header {
+    。clock-container {
       text-align: center;
-      margin-bottom: 40px;
+      padding: 20px;
     }
-    h1 {
-      font-size: 2.5rem;
-      margin: 0 0 10px;
+    #clock {
+      font-size: 5rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-shadow: var(--shadow);
+      transition: color 0.3s;
+    }
+    #clock:hover {
       color: var(--primary);
     }
-    p {
-      color: #555;
-      margin: 0 0 24px;
-    }
-    .btn {
-      display: inline-block;
-      background: var(--primary);
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: var(--radius);
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .btn:hover {
-      background: #1d4ed8;
-    }
     footer {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
       text-align: center;
-      margin-top: 60px;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
       color: #888;
+    }
+    @media (max-width: 600px) {
+      #clock {
+        font-size: 3.5rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>欢迎来到我的网站</h1>
-      <p>这是使用普通 <strong>index.html</strong> 快速搭建的首页示例。</p>
-      <a href="#about" class="btn">了解更多</a>
-    </header>
-
-    <main>
-      <section id="about">
-        <h2>关于</h2>
-        <p>这里可以放置关于你或项目的简介，例如技能、经历或产品介绍。你可以根据需要自由编辑文本与样式。</p>
-      </section>
-
-      <section id="contact">
-        <h2>联系</h2>
-        <p>邮箱：<a href="mailto:you@example.com">you@example.com</a></p>
-      </section>
-    </main>
-
-    <footer>
-      <p>&copy; 2025 你的名字. 保留所有权利.</p>
-    </footer>
+  <div class="clock-container">
+    <h1 id="clock">00:00:00</h1>
   </div>
+  <footer>Digital Clock</footer>
 
   <script>
-    // 平滑滚动到锚点
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
+    function updateClock() {
+      const 当前 = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(现在。getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+    // 页面加载立即显示并每秒更新
+    updateClock();
+    setInterval(updateClock, 1000);
   </script>
 </body>
 </html>
