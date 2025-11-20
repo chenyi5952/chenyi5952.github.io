@@ -1,0 +1,1 @@
+import{J as e}from"./index-96b49db5.js";const s=e("dingding",{state:()=>({isShow:!1,tabsData:[{path:"/homePage",icon:"User",name:"首页"}],tabsShow:"/homePage"}),getters:{},actions:{},persist:!0});export{s as u};
