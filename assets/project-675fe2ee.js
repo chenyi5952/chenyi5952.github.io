@@ -1,1 +1,0 @@
-import{r as e}from"./http-cffe2822.js";function a(t){return e({url:"/project/get",method:"get",params:t})}function o(t){return e({url:"/project/update",method:"put",data:t})}function u(t){return e({url:"/project/add",method:"post",data:t})}function d(t){return e({url:"/project/delete",method:"delete",data:t})}export{u as c,d,a as g,o as u};
