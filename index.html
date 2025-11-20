@@ -17,7 +17,6 @@
       color: var(--text);
       margin: 0;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
@@ -36,20 +35,6 @@
     #clock:hover {
       color: var(--primary);
     }
-    。btn {
-      margin-top: 24px;
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      font-size: 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-    }
-    。btn:active {
-      transform: scale(0.96);
-    }
     footer {
       position: fixed;
       bottom: 20px;
@@ -62,53 +47,26 @@
       #clock {
         font-size: 3.5rem;
       }
-      .btn {
-        font-size: 0.9rem;
-      }
     }
   </style>
 </head>
 <body>
   <div class="clock-container">
     <h1 id="clock">00:00:00</h1>
-    <button id="refreshBtn" class="btn">刷新时间</button>
   </div>
   <footer>Digital Clock</footer>
 
   <script>
-    const clockEl = document.getElementById('clock');
-    const refreshBtn = document.getElementById('refreshBtn');
-
     function updateClock() {
-      // 使用本地时区时间；如需固定为北京时间可改为：
-      // const now = new Date().toLocaleTimeString('zh-CN', { timeZone: 'Asia/Shanghai', hour12: false });
-      const now = new Date();
+      const 当前 = new Date();
       const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const minutes = String(现在。getMinutes()).padStart(2, '0');
       const seconds = String(now.getSeconds()).padStart(2, '0');
-      clockEl.textContent = `${hours}:${minutes}:${seconds}`;
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
     }
-
-    // 立即显示一次，避免空白
+    // 页面加载立即显示并每秒更新
     updateClock();
-    // 每秒自动更新
     const timer = setInterval(updateClock, 1000);
-
-    // 按钮点击：立即刷新一次时间
-    refreshBtn.addEventListener('click', () => {
-      updateClock();
-      // 可选：同时触发一次页面重绘，规避极少数浏览器渲染卡顿
-      clockEl.style.animation = 'none';
-      void clockEl.offsetWidth;
-      clockEl.style.animation = null;
-    });
-
-    // 页面可见性变化（切回前台时校正一次时间）
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) {
-        updateClock();
-      }
-    });
   </script>
 </body>
 </html>
