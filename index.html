@@ -1,32 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" id="dynamic-css" href="" />
-  <meta name=" viewport" content="width=device-width, initial-scale=1.0" />
-  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>数字时钟</title>
   <style>
+    :root {
+      --bg: #1e1e2f;
+      --text: #ffffff;
+      --primary: #00b4d8;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
     body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
       margin: 0;
-      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .clock-container {
+      text-align: center;
+      padding: 20px;
+    }
+    #clock {
+      font-size: 5rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-shadow: var(--shadow);
+      transition: color 0.3s;
+    }
+    #clock:hover {
+      color: var(--primary);
+    }
+    footer {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.875rem;
+      color: #888;
+    }
+    @media (max-width: 600px) {
+      #clock {
+        font-size: 3.5rem;
+      }
     }
   </style>
-  <script type="module" crossorigin src="/assets/index-96b49db5.js"></script>
-  <link rel="stylesheet" href="/assets/index-ab77bccc.css">
 </head>
-
 <body>
-  <div id="app"></div>
-  
+  <div class="clock-container">
+    <h1 id="clock">00:00:00</h1>
+  </div>
+  <footer>Digital Clock</footer>
+
   <script>
-    document.title = localStorage.getItem("projectName");
-    let projectLogo = localStorage.getItem("projectLogo");
-    window.addEventListener('DOMContentLoaded', function () {
-      const dynamicCss = document.getElementById('dynamic-css');
-      dynamicCss.href = projectLogo;
-    });
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+    // 页面加载立即显示并每秒更新
+    updateClock();
+    setInterval(updateClock, 1000);
   </script>
 </body>
-
 </html>
