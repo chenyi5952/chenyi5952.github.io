@@ -12,7 +12,7 @@
       --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     }
     body {
-      font-family: -apple-system， BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
       margin: 0;
@@ -21,7 +21,7 @@
       align-items: center;
       min-height: 100vh;
     }
-    。clock-container {
+    .clock-container {
       text-align: center;
       padding: 20px;
     }
@@ -58,15 +58,15 @@
 
   <script>
     function updateClock() {
-      const 当前 = new Date();
+      const now = new Date();
       const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(现在。getMinutes()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
       const seconds = String(now.getSeconds()).padStart(2, '0');
       document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
     }
     // 页面加载立即显示并每秒更新
     updateClock();
-    const timer = setInterval(updateClock, 1000);
+    setInterval(updateClock, 1000);
   </script>
 </body>
 </html>
